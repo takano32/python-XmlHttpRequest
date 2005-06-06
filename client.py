@@ -21,10 +21,23 @@ print 'Received', repr(data)
 
 class SimpleClient():
   def __init__(self, host, port):
-    pass
+    self.host = host
+	 self.port = port
+	 self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+  def connect():
+	 self.socket.connect(self.host, self.port)
 
   def send(message):
-    pass
+    sock = self.socket
+    sock.send(message)
+	 data = list()
+	 while( ch = sock.recv(1)):
+	   data.append(ch)
+	 return "".join(data)
+
+  def close():
+    self.socket.close()
 
 
 
