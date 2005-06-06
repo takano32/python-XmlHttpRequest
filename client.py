@@ -20,7 +20,7 @@ print 'Received', repr(data)
 
 
 class SimpleClient():
-  def __init__():
+  def __init__(self, host, port):
     pass
 
   def send(message):
