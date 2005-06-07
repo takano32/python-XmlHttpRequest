@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # Echo client program
 import socket
+import threading
 
 class SimpleClient:
   def __init__(self, host, port):
@@ -35,8 +36,22 @@ client.send("""
 <login id="mino01" domain="example.com" pass="mino01"/>
 </imc>\0
 """)
-print client.recv()
-client.send("secound step")
-print client.recv()
+
+
+class ReceiveThread( threading.Thread ):
+  def set_client(self, client):
+    self.client = client
+  def recv_repeat(self):
+    while True:
+      print self.client.recv()
+  def run(self):
+    self.recv_repeat()
+recv = ReceiveThread()
+recv.set_client(client)
+recv.start()
+recv.join()
+#print client.recv()
+#client.send("secound step")
+#print client.recv()
 
 
