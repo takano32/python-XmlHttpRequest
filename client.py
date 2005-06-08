@@ -41,17 +41,17 @@ client.send("""
 class ReceiveThread( threading.Thread ):
   def set_client(self, client):
     self.client = client
+
   def recv_repeat(self):
     while True:
       print self.client.recv()
+
   def run(self):
     self.recv_repeat()
+
 recv = ReceiveThread()
 recv.set_client(client)
 recv.start()
 recv.join()
-#print client.recv()
-#client.send("secound step")
-#print client.recv()
 
 
